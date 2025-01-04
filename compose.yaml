@@ -2,6 +2,7 @@ name: apps
 
 include:
   - db-compose.yaml
+  - navigation-compose.yaml
 
 services:
   keycloak:
