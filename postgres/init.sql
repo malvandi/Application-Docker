@@ -1,11 +1,19 @@
 CREATE USER kyc_user WITH ENCRYPTED PASSWORD 'keycloak_user';
-CREATE USER nav_user WITH ENCRYPTED PASSWORD 'navigation_user';
+CREATE USER vs_user WITH ENCRYPTED PASSWORD 'vector_service_user';
 
--- \c kyc_user
 CREATE DATABASE keycloak WITH OWNER kyc_user;
-GRANT ALL PRIVILEGES ON DATABASE keycloak TO kyc_user;
 
--- \c nav_user
-CREATE DATABASE navigation WITH OWNER nav_user;
-GRANT ALL PRIVILEGES ON DATABASE navigation TO nav_user;
--- todo
+CREATE DATABASE vector_service WITH OWNER vs_user;
+CREATE DATABASE tile_service WITH OWNER ts_user;
+
+\c kyc_user
+ALTER SCHEMA "public" OWNER TO "kyc_user";
+
+\c vector_service
+ALTER SCHEMA "public" OWNER TO "vs_user";
+CREATE SCHEMA "layers" AUTHORIZATION "vs_user";
+CREATE EXTENSION "postgis";
+ALTER TABLE "public"."spatial_ref_sys" OWNER TO "vs_user";
+
+\c tile_service
+ALTER SCHEMA "public" OWNER TO "ts_user";
