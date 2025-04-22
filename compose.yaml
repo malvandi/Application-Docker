@@ -3,6 +3,7 @@ name: apps
 include:
   - db-compose.yaml
   - navigation-compose.yaml
+  - minio-compose.yaml
 
 services:
   keycloak:
