@@ -1,0 +1,32 @@
+name: trader
+
+services:
+  nest_trader_service:
+    image: ${IMAGE_NEST_TRADER}
+    container_name: nest_trader_service
+    expose:
+      - "9002:9002"
+    networks:
+      - apps
+    depends_on:
+      - postgres
+
+  kt_trader_service:
+    image: ${IMAGE_JAVA}
+    container_name: kt_trader_service
+    expose:
+      - "8080:8080"
+    volumes:
+      - ./trader:/app
+    working_dir: /app
+    command: java -jar ${KTS_EXE_FILE}
+    environment:
+      DB_HOST: ${POSTGRES_DB}
+      DB_PORT: ${POSTGRES_PORT}
+      DB_NAME: ${KTS_DB_NAME}
+      DB_USERNAME: ${KTS_DB_USERNAME}
+      DB_PASSWORD: ${KTS_DB_PASSWORD}
+    networks:
+      - apps
+    depends_on:
+      - postgres
