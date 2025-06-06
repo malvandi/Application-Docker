@@ -5,6 +5,7 @@ include:
   - navigation-compose.yaml
   - minio-compose.yaml
   - trader-compose.yaml
+  - n8n-compose.yaml
 
 services:
   keycloak:
@@ -39,6 +40,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./nginx/html/trader:/usr/share/nginx/html/trader
       - ./nginx/html/malvandi-trader-ui:/usr/share/nginx/html/malvandi-trader-ui
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/config/certs:/etc/nginx/certs:ro

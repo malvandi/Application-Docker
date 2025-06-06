@@ -4,12 +4,12 @@ services:
   nest_trader_service:
     image: ${IMAGE_NEST_TRADER}
     container_name: nest_trader_service
-    expose:
+    ports:
       - "9002:9002"
     networks:
       - apps
-    depends_on:
-      - postgres
+#    depends_on:
+#      - postgres
 
   kt_trader_service:
     image: ${IMAGE_JAVA}
