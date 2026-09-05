@@ -1,4 +1,4 @@
-name: database
+name: n8n
   
   
   docker run -d --name n8n -p 5678:5678 `

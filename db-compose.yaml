@@ -34,7 +34,7 @@ services:
       ORACLE_PASSWORD: oracle
 
   mongo:
-    image: mongo
+    image: ${IMAGE_MONGO}
     container_name: mongo
     restart: always
     ports:
@@ -46,7 +46,7 @@ services:
       - mongo_data:/data/db
 
   mongo-express:
-    image: mongo-express
+    image: ${IMAGE_MONGO_EXPRESS}
     container_name: mongo-express
     restart: always
     ports:
